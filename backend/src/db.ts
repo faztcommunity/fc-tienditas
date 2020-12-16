@@ -3,6 +3,7 @@ require('dotenv').config();
 
 // Dependences
 import { createConnection, ConnectionOptions, Connection } from "typeorm";
+import { join } from "path";
 
 
 const newConnection = async (options?: ConnectionOptions): Promise<void> => {
@@ -17,7 +18,7 @@ const newConnection = async (options?: ConnectionOptions): Promise<void> => {
             connection = await createConnection({
                 type: "mysql",
                 url: process.env.DB_URL,
-                entities: process.env.NODE_ENV == "dev" ? ["../src/models/**/*.ts"] : ["./dist/models/**/*.js"],
+                entities: process.env.NODE_ENV == "dev" ? [join(__dirname, "/models/*.ts")] : [join(__dirname, "/models/*.js")],
                 synchronize: true
             });
 

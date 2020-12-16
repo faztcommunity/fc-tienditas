@@ -6,6 +6,10 @@ import express, { Application, json, urlencoded } from "express";
 import morgan from "morgan";
 import cors from "cors";
 
+// Routes
+import routes from "./routes/routes";
+import apiRoutes from "./routes/product.routes";
+
 /**
  * 
  */
@@ -58,7 +62,8 @@ class Server {
      * Sets up server paths
      */
     private routes(): void {
-
+        this.app.use(routes);
+        this.app.use("/api",apiRoutes);
     }
 
     /**
