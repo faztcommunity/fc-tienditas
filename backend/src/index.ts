@@ -1,3 +1,17 @@
-const test: string = "This is working";
+//Dependences
+import Server from "./Server";
+import connection from "./db";
 
-console.log(test);
+/**
+ * Main function
+ */
+async function main(): Promise<void> {
+    // Instances
+    const server: Server = new Server();
+
+    // Start Server and database
+    await connection();
+    server.startServer();
+}
+
+main();
